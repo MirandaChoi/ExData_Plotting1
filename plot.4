@@ -1,0 +1,15 @@
+#subtract data
+project_data <- read.table("household_power_consumption.txt",header=TRUE,sep = ";")
+sub_data<-project_data[project_data$Date %in% c("1/2/2007","2/2/2007"),]  
+sub_data<-as.numeric(sub_data$Global_active_power)
+#
+png("plot4.png",width=480,height=480)
+par(mfrow=c(2,2))
+plot(sub_datat$newdate,sub_data$Global_active_power,"l",xlab=NA,ylab="Global Active Power")
+plot(sub_data$newdate,sub_data$Voltage,"l",xlab="datetime",ylab="Voltage")
+plot(sub_data$newdate,sub_data$Sub_metering_1,"l",col=1,xlab=NA,ylab="Energy sub melting",ylim=c(0,max(dataset[,7:9])))
+lines(sub_data$newdate,sub_data$Sub_metering_2,"l",col=c("red"))
+lines(sub_data$newdate,sub_data$Sub_metering_3,"l",col=c("blue"))
+legend("topright",legend=colnames(sub_data)[7:9],lty=c(1,1,1),bty="n",col=c("black","red","blue"))
+plot(sub_data$newdate,sub_data$Global_reactive_power,"l",xlab="datetime",ylab="Global_reactive_power")
+dev.off()
