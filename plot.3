@@ -1,0 +1,11 @@
+#subtract data
+project_data <- read.table("household_power_consumption.txt",header=TRUE,sep = ";")
+sub_data<-project_data[project_data$Date %in% c("1/2/2007","2/2/2007"),]  
+sub_data<-as.numeric(sub_data$Global_active_power)
+#create plot
+png("plot3.png",width=480,height=480)
+plot(sub_data$newdate,dataset$Sub_metering_1,"l",col=1,xlab=NA,ylab="Energy sub melting",ylim=c(0,max(dataset[,7:9])))
+lines(sub_data$newdate,dataset$Sub_metering_2,"l",col=c("red"))
+lines(sub_data$newdate,dataset$Sub_metering_3,"l",col=c("blue"))
+legend("topright",legend=colnames(sub_data)[7:9],lty=c(1,1,1),col=c("black","red","blue"))
+dev.off()
