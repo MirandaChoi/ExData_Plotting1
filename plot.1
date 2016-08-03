@@ -1,0 +1,7 @@
+#subtract data
+project_data <- read.table("household_power_consumption.txt",header=TRUE,sep = ";")
+sub_data<-project_data[project_data$Date %in% c("1/2/2007","2/2/2007"),]  
+sub_data<-as.numeric(sub_data$Global_active_power)
+#create plot
+png("plot1.png", height = 480, width = 480)
+hist(sub_data, col ='red', xlab ='Global Active Power (kilowatts)', main = 'Global Active Power')
